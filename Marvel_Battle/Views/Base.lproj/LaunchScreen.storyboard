@@ -19,13 +19,19 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MarvelBattle_Logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="yF8-A7-o37">
-                                        <rect key="frame" x="55" y="341" width="304" height="214"/>
+                                        <rect key="frame" x="107.5" y="378" width="199" height="140"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="140" id="ha4-ET-XUc"/>
+                                            <constraint firstAttribute="width" constant="199" id="mQv-U4-jw7"/>
+                                        </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96381360292434692" green="0.067659825086593628" blue="0.060940198600292206" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="yF8-A7-o37" firstAttribute="centerX" secondItem="CqE-Le-T19" secondAttribute="centerX" id="Vd5-5a-QZr"/>
-                                    <constraint firstItem="yF8-A7-o37" firstAttribute="centerY" secondItem="CqE-Le-T19" secondAttribute="centerY" id="gGt-ev-VaQ"/>
+                                    <constraint firstItem="yF8-A7-o37" firstAttribute="centerY" secondItem="CqE-Le-T19" secondAttribute="centerY" id="FQ8-1N-Ybq"/>
+                                    <constraint firstItem="yF8-A7-o37" firstAttribute="centerX" secondItem="CqE-Le-T19" secondAttribute="centerX" id="lTl-Fn-ckj"/>
+                                    <constraint firstItem="yF8-A7-o37" firstAttribute="centerX" secondItem="CqE-Le-T19" secondAttribute="centerX" id="riW-Dh-eao"/>
+                                    <constraint firstItem="yF8-A7-o37" firstAttribute="centerY" secondItem="CqE-Le-T19" secondAttribute="centerY" id="x8x-8u-3xP"/>
                                 </constraints>
                             </view>
                         </subviews>
