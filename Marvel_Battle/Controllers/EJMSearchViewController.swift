@@ -14,18 +14,22 @@ class EJMSearchViewController:  UIViewController {
     @IBOutlet var tableView: UITableView!
     
     var marvelArray = [DataCharacter]()
+    var searchCharacter = [DataCharacter]()
+    var searching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Include logo in Navigation Bar
         let logo = UIImage(named: "MarvelBattleHorizontalLogo.png")
         let imageView = UIImageView(image:logo)
         imageView.contentMode = UIView.ContentMode.scaleAspectFit
         self.navigationItem.titleView = imageView
         
-        // Call to API
         parseJSON()
+        
+        searchBar.searchTextField.textColor = .white
+        searchBar.placeholder = "Super Hero"
+        searchBar.showsCancelButton = true
         
     }
     
@@ -37,6 +41,7 @@ class EJMSearchViewController:  UIViewController {
         guard let url = URL(string: jsonUrlString) else {return}
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {return}
+            //TO DO ERROR CODES AND SUCCESS CONECTION
             do{
                 let decoder = JSONDecoder()
                 let response = try decoder.decode(Characters.self, from: data)
@@ -55,7 +60,11 @@ class EJMSearchViewController:  UIViewController {
 extension EJMSearchViewController :  UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.marvelArray.count
+        if searching{
+            return self.searchCharacter.count
+        }else{
+            return self.marvelArray.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,6 +72,21 @@ extension EJMSearchViewController :  UITableViewDelegate, UITableViewDataSource{
         
         cell.textLabel?.text = self.marvelArray[indexPath.row].name
         
-        return cell
+        if searching {
+            cell.textLabel?.text = self.searchCharacter[indexPath.row].name
+            return cell
+        } else {
+            cell.textLabel?.text = self.marvelArray[indexPath.row].name
+            return cell
+        }
+    }
+}
+
+extension EJMSearchViewController: UISearchBarDelegate{
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.searchCharacter = self.marvelArray.filter({$0.name!.prefix(searchText.count) == searchText})
+        searching = true
+        tableView.reloadData()
     }
 }

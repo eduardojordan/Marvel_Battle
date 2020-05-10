@@ -15,8 +15,8 @@ class ApiURL{
     static let basePath = "https://gateway.marvel.com/v1/public"
     static let pathCharacters = "/characters?"
     static let limit = 200
-    static private let privateKey = "5caaca8f42ab034276ef21802379e48072601df0"
-    static private let publicKey = "30f82da5469dc0b00aab3559f26e2047"
+    static private let privateKey = Constants.API_KEY_PRIVATE
+    static private let publicKey = Constants.API_KEY_PUBLIC
     
     static func getCredentials() -> String{
         let ts = Date().timeIntervalSince1970.description

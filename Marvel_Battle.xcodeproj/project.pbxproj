@@ -20,7 +20,7 @@
 		046CCD6E2466CAB50089C1FF /* EJMSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046CCD6D2466CAB50089C1FF /* EJMSearchViewController.swift */; };
 		046CCD722466D37F0089C1FF /* MarvelBattleHorizontalLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 046CCD712466D37F0089C1FF /* MarvelBattleHorizontalLogo.png */; };
 		046CCD862466EDC10089C1FF /* Characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046CCD852466EDC10089C1FF /* Characters.swift */; };
-		04B8812324675B77008B5CBE /* fondoSlash.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 04B8812224675B77008B5CBE /* fondoSlash.jpg */; };
+		04B881282467613F008B5CBE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B881272467613F008B5CBE /* Constants.swift */; };
 		5F65C2FE33508B9065C607E8 /* Pods_Marvel_Battle_Marvel_BattleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAA2C1A9E4D6FBACB1886A2C /* Pods_Marvel_Battle_Marvel_BattleUITests.framework */; };
 		73D3B66FC72591F2136CF0E9 /* Pods_Marvel_BattleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEFC25FAB8B8878D6280385D /* Pods_Marvel_BattleTests.framework */; };
 		F5BA65EF360FCC70474B0A63 /* Pods_Marvel_Battle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2243B7873877392315580675 /* Pods_Marvel_Battle.framework */; };
@@ -64,7 +64,7 @@
 		046CCD6D2466CAB50089C1FF /* EJMSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EJMSearchViewController.swift; sourceTree = "<group>"; };
 		046CCD712466D37F0089C1FF /* MarvelBattleHorizontalLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MarvelBattleHorizontalLogo.png; sourceTree = "<group>"; };
 		046CCD852466EDC10089C1FF /* Characters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Characters.swift; sourceTree = "<group>"; };
-		04B8812224675B77008B5CBE /* fondoSlash.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fondoSlash.jpg; sourceTree = "<group>"; };
+		04B881272467613F008B5CBE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1B0B453CA812A8DA562E4720 /* Pods-Marvel_Battle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel_Battle.release.xcconfig"; path = "Target Support Files/Pods-Marvel_Battle/Pods-Marvel_Battle.release.xcconfig"; sourceTree = "<group>"; };
 		1C6B1FCD6F5768C028268395 /* Pods-Marvel_BattleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel_BattleTests.release.xcconfig"; path = "Target Support Files/Pods-Marvel_BattleTests/Pods-Marvel_BattleTests.release.xcconfig"; sourceTree = "<group>"; };
 		2243B7873877392315580675 /* Pods_Marvel_Battle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marvel_Battle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +132,7 @@
 				046CCD632466BBA00089C1FF /* Views */,
 				046CCD622466BB9B0089C1FF /* Controllers */,
 				046CCD652466BBE60089C1FF /* Resources */,
+				04B8812624676112008B5CBE /* Utils */,
 				046CCD682466C3F40089C1FF /* Extensions */,
 				046CCD2E2466B8E90089C1FF /* AppDelegate.swift */,
 				046CCD3A2466B8EC0089C1FF /* Assets.xcassets */,
@@ -188,7 +189,6 @@
 		046CCD652466BBE60089C1FF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				04B8812224675B77008B5CBE /* fondoSlash.jpg */,
 				046CCD6B2466C63B0089C1FF /* MarvelBattle_Logo.png */,
 				046CCD712466D37F0089C1FF /* MarvelBattleHorizontalLogo.png */,
 			);
@@ -201,6 +201,14 @@
 				046CCD692466C40D0089C1FF /* Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		04B8812624676112008B5CBE /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				04B881272467613F008B5CBE /* Constants.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		424871F616ADBD2EDF64ECE2 /* Pods */ = {
@@ -337,7 +345,6 @@
 			files = (
 				046CCD3E2466B8EC0089C1FF /* LaunchScreen.storyboard in Resources */,
 				046CCD3B2466B8EC0089C1FF /* Assets.xcassets in Resources */,
-				04B8812324675B77008B5CBE /* fondoSlash.jpg in Resources */,
 				046CCD362466B8E90089C1FF /* Main.storyboard in Resources */,
 				046CCD6C2466C63B0089C1FF /* MarvelBattle_Logo.png in Resources */,
 				046CCD722466D37F0089C1FF /* MarvelBattleHorizontalLogo.png in Resources */,
@@ -472,6 +479,7 @@
 				046CCD862466EDC10089C1FF /* Characters.swift in Sources */,
 				046CCD672466BD770089C1FF /* ApiURL.swift in Sources */,
 				046CCD6E2466CAB50089C1FF /* EJMSearchViewController.swift in Sources */,
+				04B881282467613F008B5CBE /* Constants.swift in Sources */,
 				046CCD392466B8E90089C1FF /* Marvel_Battle.xcdatamodeld in Sources */,
 				046CCD2F2466B8E90089C1FF /* AppDelegate.swift in Sources */,
 			);
