@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0459FA712468B34F00A2B482 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 0459FA702468B34F00A2B482 /* placeholder.png */; };
 		046CCD2F2466B8E90089C1FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046CCD2E2466B8E90089C1FF /* AppDelegate.swift */; };
 		046CCD362466B8E90089C1FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 046CCD342466B8E90089C1FF /* Main.storyboard */; };
 		046CCD392466B8E90089C1FF /* Marvel_Battle.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 046CCD372466B8E90089C1FF /* Marvel_Battle.xcdatamodeld */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		0096A58DA55E79AE4C558180 /* Pods-Marvel_Battle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel_Battle.debug.xcconfig"; path = "Target Support Files/Pods-Marvel_Battle/Pods-Marvel_Battle.debug.xcconfig"; sourceTree = "<group>"; };
+		0459FA702468B34F00A2B482 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		046CCD2B2466B8E90089C1FF /* Marvel_Battle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marvel_Battle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		046CCD2E2466B8E90089C1FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		046CCD352466B8E90089C1FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -134,10 +136,7 @@
 				046CCD652466BBE60089C1FF /* Resources */,
 				04B8812624676112008B5CBE /* Utils */,
 				046CCD682466C3F40089C1FF /* Extensions */,
-				046CCD2E2466B8E90089C1FF /* AppDelegate.swift */,
-				046CCD3A2466B8EC0089C1FF /* Assets.xcassets */,
-				046CCD3F2466B8EC0089C1FF /* Info.plist */,
-				046CCD372466B8E90089C1FF /* Marvel_Battle.xcdatamodeld */,
+				04BB74702468168A00654830 /* Supporting */,
 			);
 			path = Marvel_Battle;
 			sourceTree = "<group>";
@@ -189,6 +188,7 @@
 		046CCD652466BBE60089C1FF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0459FA702468B34F00A2B482 /* placeholder.png */,
 				046CCD6B2466C63B0089C1FF /* MarvelBattle_Logo.png */,
 				046CCD712466D37F0089C1FF /* MarvelBattleHorizontalLogo.png */,
 			);
@@ -209,6 +209,17 @@
 				04B881272467613F008B5CBE /* Constants.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		04BB74702468168A00654830 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				046CCD2E2466B8E90089C1FF /* AppDelegate.swift */,
+				046CCD3A2466B8EC0089C1FF /* Assets.xcassets */,
+				046CCD3F2466B8EC0089C1FF /* Info.plist */,
+				046CCD372466B8E90089C1FF /* Marvel_Battle.xcdatamodeld */,
+			);
+			path = Supporting;
 			sourceTree = "<group>";
 		};
 		424871F616ADBD2EDF64ECE2 /* Pods */ = {
@@ -344,6 +355,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				046CCD3E2466B8EC0089C1FF /* LaunchScreen.storyboard in Resources */,
+				0459FA712468B34F00A2B482 /* placeholder.png in Resources */,
 				046CCD3B2466B8EC0089C1FF /* Assets.xcassets in Resources */,
 				046CCD362466B8E90089C1FF /* Main.storyboard in Resources */,
 				046CCD6C2466C63B0089C1FF /* MarvelBattle_Logo.png in Resources */,
@@ -657,7 +669,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QSL65SU6PD;
-				INFOPLIST_FILE = Marvel_Battle/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Marvel_Battle/Supporting/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -676,7 +688,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QSL65SU6PD;
-				INFOPLIST_FILE = Marvel_Battle/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Marvel_Battle/Supporting/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

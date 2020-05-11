@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class EJMSearchViewController:  UIViewController {
     
     @IBOutlet var searchBar: UISearchBar!
@@ -26,11 +27,11 @@ class EJMSearchViewController:  UIViewController {
         self.navigationItem.titleView = imageView
         
         parseJSON()
-        
         searchBar.searchTextField.textColor = .white
-        searchBar.placeholder = "Super Hero"
-        searchBar.showsCancelButton = true
+        searchBar.placeholder = "Search hero"
+        searchBar.searchTextField.font = UIFont(name: "Helvetica", size: 14)
         
+        tableView.rowHeight = 100
     }
     
     func parseJSON(){
@@ -41,7 +42,6 @@ class EJMSearchViewController:  UIViewController {
         guard let url = URL(string: jsonUrlString) else {return}
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {return}
-            //TO DO ERROR CODES AND SUCCESS CONECTION
             do{
                 let decoder = JSONDecoder()
                 let response = try decoder.decode(Characters.self, from: data)
@@ -57,7 +57,7 @@ class EJMSearchViewController:  UIViewController {
     }
 }
 
-extension EJMSearchViewController :  UITableViewDelegate, UITableViewDataSource{
+extension EJMSearchViewController :  UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searching{
@@ -69,9 +69,24 @@ extension EJMSearchViewController :  UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        // Adjust Cell Style
+        cell.textLabel?.font = UIFont(name: "Helvetica Bold", size: 20.0)
+        cell.textLabel?.textColor = .white
+        //        cell.imageView?.layer.cornerRadius = 75.0
+        //        cell.imageView?.layer.masksToBounds = true
         
+        // Cell Data
         cell.textLabel?.text = self.marvelArray[indexPath.row].name
         
+        let imgData = self.marvelArray[indexPath.row].image
+        let pathString = "http://i.annihil.us" + imgData!.path + "/portrait_xlarge.jpg"
+        let url = URL(string: pathString)
+        if  url == nil {
+            cell.imageView?.image = UIImage(named: "placeholder.png")
+        }else{
+            
+            cell.imageView?.image = UIImage(url: url)
+        }
         if searching {
             cell.textLabel?.text = self.searchCharacter[indexPath.row].name
             return cell
@@ -85,8 +100,23 @@ extension EJMSearchViewController :  UITableViewDelegate, UITableViewDataSource{
 extension EJMSearchViewController: UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
         self.searchCharacter = self.marvelArray.filter({$0.name!.prefix(searchText.count) == searchText})
         searching = true
         tableView.reloadData()
     }
 }
+
+extension UIImage {
+    convenience init?(url: URL?) {
+        guard let url = url else { return nil }
+        do {
+            let data = try Data(contentsOf: url)
+            self.init(data: data)
+        } catch {
+            print("Cannot load image from url: \(url) with error: \(error)")
+            return nil
+        }
+    }
+}
+
