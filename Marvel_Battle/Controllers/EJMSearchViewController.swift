@@ -32,6 +32,7 @@ class EJMSearchViewController:  UIViewController {
         searchBar.placeholder = "Search hero"
         searchBar.searchTextField.font = UIFont(name: "Helvetica", size: 14)
         
+        tableView.backgroundColor = UIColor.darkGray
         tableView.rowHeight = 100
         if self.marvelArray.count == 0{
             self.initActivityIndicator()
@@ -64,9 +65,9 @@ class EJMSearchViewController:  UIViewController {
     func initActivityIndicator(){
         activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
         activityIndicator.center = self.view.center
-        activityIndicator.backgroundColor = (UIColor (white: 0.3, alpha: 0.8))   //create a background behind the spinner
+        activityIndicator.backgroundColor = (UIColor (white: 0.2, alpha: 0.8))   //create a background behind the spinner
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.style = UIActivityIndicatorView.Style.whiteLarge
+        activityIndicator.style = UIActivityIndicatorView.Style.white
         activityIndicator.layer.cornerRadius = 10
         view.addSubview(activityIndicator)
 
