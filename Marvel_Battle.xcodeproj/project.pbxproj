@@ -10,6 +10,7 @@
 		0459FA732469629700A2B482 /* RequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0459FA722469629700A2B482 /* RequestData.swift */; };
 		0459FA78246963F400A2B482 /* ServerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0459FA77246963F400A2B482 /* ServerError.swift */; };
 		0459FA7A2469A17300A2B482 /* imgNotAvailable.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0459FA792469A17300A2B482 /* imgNotAvailable.jpg */; };
+		0459FA7C2469A77400A2B482 /* EJMDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0459FA7B2469A77400A2B482 /* EJMDetailViewController.swift */; };
 		046CCD2F2466B8E90089C1FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046CCD2E2466B8E90089C1FF /* AppDelegate.swift */; };
 		046CCD362466B8E90089C1FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 046CCD342466B8E90089C1FF /* Main.storyboard */; };
 		046CCD392466B8E90089C1FF /* Marvel_Battle.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 046CCD372466B8E90089C1FF /* Marvel_Battle.xcdatamodeld */; };
@@ -51,6 +52,7 @@
 		0459FA722469629700A2B482 /* RequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestData.swift; sourceTree = "<group>"; };
 		0459FA77246963F400A2B482 /* ServerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerError.swift; sourceTree = "<group>"; };
 		0459FA792469A17300A2B482 /* imgNotAvailable.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = imgNotAvailable.jpg; sourceTree = "<group>"; };
+		0459FA7B2469A77400A2B482 /* EJMDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EJMDetailViewController.swift; sourceTree = "<group>"; };
 		046CCD2B2466B8E90089C1FF /* Marvel_Battle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marvel_Battle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		046CCD2E2466B8E90089C1FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		046CCD352466B8E90089C1FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				046CCD6D2466CAB50089C1FF /* EJMSearchViewController.swift */,
+				0459FA7B2469A77400A2B482 /* EJMDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -505,6 +508,7 @@
 				046CCD862466EDC10089C1FF /* Characters.swift in Sources */,
 				046CCD672466BD770089C1FF /* ApiURL.swift in Sources */,
 				046CCD6E2466CAB50089C1FF /* EJMSearchViewController.swift in Sources */,
+				0459FA7C2469A77400A2B482 /* EJMDetailViewController.swift in Sources */,
 				0459FA78246963F400A2B482 /* ServerError.swift in Sources */,
 				04B881282467613F008B5CBE /* Constants.swift in Sources */,
 				046CCD392466B8E90089C1FF /* Marvel_Battle.xcdatamodeld in Sources */,

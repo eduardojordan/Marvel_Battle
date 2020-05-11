@@ -84,9 +84,10 @@ extension EJMSearchViewController :  UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-
+        
         cell.textLabel?.font = UIFont(name: "Helvetica Bold", size: 20.0)
         cell.textLabel?.textColor = .white
+        cell.selectionStyle = .none
         
         cell.textLabel?.text = self.marvelArray[indexPath.row].name
         
@@ -106,6 +107,18 @@ extension EJMSearchViewController :  UITableViewDelegate, UITableViewDataSource 
             return cell
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        let controller = self.storyboard!.instantiateViewController(withIdentifier: "EJMDetailViewController") as! EJMDetailViewController
+        controller.getName = self.marvelArray[indexPath.row].name!
+        controller.getDescription = self.marvelArray[indexPath.row].description!
+        controller.getImage = self.marvelArray[indexPath.row].image!
+        self.navigationController!.pushViewController(controller, animated: true)
+        
+    }
+    
+    
 }
 
 extension EJMSearchViewController: UISearchBarDelegate{
