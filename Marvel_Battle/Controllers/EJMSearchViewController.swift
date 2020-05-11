@@ -14,6 +14,11 @@ class EJMSearchViewController:  UIViewController {
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var tableView: UITableView!
     
+    let requestCharacter = RequestData()
+    var currentPage = 0
+    var total = 0
+    var nameSearch = ""
+    
     var marvelArray = [DataCharacter]()
     var searchCharacter = [DataCharacter]()
     var searching = false
@@ -27,7 +32,7 @@ class EJMSearchViewController:  UIViewController {
         imageView.contentMode = UIView.ContentMode.scaleAspectFit
         self.navigationItem.titleView = imageView
         
-        parseJSON()
+        loadData()
         searchBar.searchTextField.textColor = .white
         searchBar.placeholder = "Search hero"
         searchBar.searchTextField.font = UIFont(name: "Helvetica", size: 14)
@@ -39,27 +44,19 @@ class EJMSearchViewController:  UIViewController {
         }
     }
     
-    func parseJSON(){
-        let jsonBase = "https://gateway.marvel.com/v1/public/characters?"
-        let jsonAPI = ApiURL.getCredentials()
-        let jsonUrlString = jsonBase + jsonAPI
-        print("+++++",jsonUrlString)
-        guard let url = URL(string: jsonUrlString) else {return}
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data else {return}
-            do{
-                let decoder = JSONDecoder()
-                let response = try decoder.decode(Characters.self, from: data)
-                self.marvelArray = response.data!.results
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.activityIndicator.stopAnimating()
-                }
-                
-            }catch let error {
-                print("JSON ERROR",error)
+    private func loadData(){
+        
+        let jsonUrlString = ApiURL.basePath + ApiURL.getCredentials()
+        requestCharacter.networkRequest(MethodType: Type.GET, url: jsonUrlString, codableType: Characters.self) { (response) in
+            self.marvelArray = response.data!.results
+            
+            print("!!!",self.marvelArray )
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.activityIndicator.stopAnimating()
             }
-        }.resume()
+        }
+        
     }
     
     func initActivityIndicator(){
@@ -70,9 +67,9 @@ class EJMSearchViewController:  UIViewController {
         activityIndicator.style = UIActivityIndicatorView.Style.white
         activityIndicator.layer.cornerRadius = 10
         view.addSubview(activityIndicator)
-
+        
         activityIndicator.startAnimating()
-      }
+    }
 }
 
 extension EJMSearchViewController :  UITableViewDelegate, UITableViewDataSource {
@@ -87,20 +84,18 @@ extension EJMSearchViewController :  UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        // Adjust Cell Style
+
         cell.textLabel?.font = UIFont(name: "Helvetica Bold", size: 20.0)
         cell.textLabel?.textColor = .white
         
-        // Cell Data
         cell.textLabel?.text = self.marvelArray[indexPath.row].name
         
         let imgData = self.marvelArray[indexPath.row].image
         let pathString = "http://i.annihil.us" + imgData!.path + "/portrait_xlarge.jpg"
         let url = URL(string: pathString)
         if  url == nil {
-            cell.imageView?.image = UIImage(named: "placeholder.png")
+            cell.imageView?.image = UIImage(named: "imgNotAvailable.jpg")
         }else{
-            
             cell.imageView?.image = UIImage(url: url)
         }
         if searching {

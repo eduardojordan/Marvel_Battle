@@ -8,7 +8,6 @@
 
 import Foundation
 
-//let BaseMarvelURL = "https://gateway.marvel.com/v1/public"
 
 struct Characters: Decodable {
     var data: ResultsCharacters?
