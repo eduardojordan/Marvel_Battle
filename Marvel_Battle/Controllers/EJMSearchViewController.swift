@@ -17,6 +17,7 @@ class EJMSearchViewController:  UIViewController {
     var marvelArray = [DataCharacter]()
     var searchCharacter = [DataCharacter]()
     var searching = false
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,9 @@ class EJMSearchViewController:  UIViewController {
         searchBar.searchTextField.font = UIFont(name: "Helvetica", size: 14)
         
         tableView.rowHeight = 100
+        if self.marvelArray.count == 0{
+            self.initActivityIndicator()
+        }
     }
     
     func parseJSON(){
@@ -48,6 +52,7 @@ class EJMSearchViewController:  UIViewController {
                 self.marvelArray = response.data!.results
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.activityIndicator.stopAnimating()
                 }
                 
             }catch let error {
@@ -55,6 +60,18 @@ class EJMSearchViewController:  UIViewController {
             }
         }.resume()
     }
+    
+    func initActivityIndicator(){
+        activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
+        activityIndicator.center = self.view.center
+        activityIndicator.backgroundColor = (UIColor (white: 0.3, alpha: 0.8))   //create a background behind the spinner
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.whiteLarge
+        activityIndicator.layer.cornerRadius = 10
+        view.addSubview(activityIndicator)
+
+        activityIndicator.startAnimating()
+      }
 }
 
 extension EJMSearchViewController :  UITableViewDelegate, UITableViewDataSource {
@@ -72,8 +89,6 @@ extension EJMSearchViewController :  UITableViewDelegate, UITableViewDataSource 
         // Adjust Cell Style
         cell.textLabel?.font = UIFont(name: "Helvetica Bold", size: 20.0)
         cell.textLabel?.textColor = .white
-        //        cell.imageView?.layer.cornerRadius = 75.0
-        //        cell.imageView?.layer.masksToBounds = true
         
         // Cell Data
         cell.textLabel?.text = self.marvelArray[indexPath.row].name
