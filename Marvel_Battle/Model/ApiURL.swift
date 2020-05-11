@@ -14,7 +14,7 @@ class ApiURL{
     
     static let basePath = "https://gateway.marvel.com/v1/public/characters?"
     static let pathCharacters = "/characters?"
-    static let limit = 20
+    static let limit =  20//100
     static private let privateKey = Constants.API_KEY_PRIVATE
     static private let publicKey = Constants.API_KEY_PUBLIC
     

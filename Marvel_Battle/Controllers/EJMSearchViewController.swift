@@ -16,8 +16,8 @@ class EJMSearchViewController:  UIViewController {
     
     let requestCharacter = RequestData()
     var currentPage = 0
-    var total = 0
-    var nameSearch = ""
+    var page = 0
+    
     
     var marvelArray = [DataCharacter]()
     var searchCharacter = [DataCharacter]()
@@ -44,13 +44,18 @@ class EJMSearchViewController:  UIViewController {
         }
     }
     
+    
     private func loadData(){
         
-        let jsonUrlString = ApiURL.basePath + ApiURL.getCredentials()
+        let offset = page * ApiURL.limit
+        print("offset------>",offset)
+        var queryParams: [String:String] = ["offset": String(offset), "limit": String(ApiURL.limit)]
+        
+        let jsonUrlString = ApiURL.basePath + queryParams.queryString! + ApiURL.getCredentials()
+        print("jsonUrlString",jsonUrlString)
+        
         requestCharacter.networkRequest(MethodType: Type.GET, url: jsonUrlString, codableType: Characters.self) { (response) in
-            self.marvelArray = response.data!.results
-            
-            print("!!!",self.marvelArray )
+            self.marvelArray.append(contentsOf: response.data!.results)
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.activityIndicator.stopAnimating()
@@ -62,7 +67,7 @@ class EJMSearchViewController:  UIViewController {
     func initActivityIndicator(){
         activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
         activityIndicator.center = self.view.center
-        activityIndicator.backgroundColor = (UIColor (white: 0.2, alpha: 0.8))   //create a background behind the spinner
+        activityIndicator.backgroundColor = (UIColor (white: 0.2, alpha: 0.8))
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = UIActivityIndicatorView.Style.white
         activityIndicator.layer.cornerRadius = 10
@@ -109,7 +114,7 @@ extension EJMSearchViewController :  UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        
         let controller = self.storyboard!.instantiateViewController(withIdentifier: "EJMDetailViewController") as! EJMDetailViewController
         controller.getName = self.marvelArray[indexPath.row].name!
         controller.getDescription = self.marvelArray[indexPath.row].description!
@@ -118,6 +123,23 @@ extension EJMSearchViewController :  UITableViewDelegate, UITableViewDataSource 
         
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == self.marvelArray.count - 1{
+            print("Cargar + Datos")
+            page =  page + 1
+            
+            loadData()
+            let spinner = UIActivityIndicatorView(style: .gray)
+            spinner.startAnimating()
+            spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width:tableView.bounds.width, height: CGFloat(44))
+            spinner.color = UIColor.white
+            
+            self.tableView.tableFooterView = spinner
+            self.tableView.tableFooterView?.isHidden = false
+            
+            
+        }
+    }
     
 }
 
