@@ -23,7 +23,7 @@ class EJMDetailViewController: UIViewController {
 
         nameLabel.text = getName
         if getDescription == ""{
-        descriptionLabel.text = "Not description Available"
+        descriptionLabel.text = "Not description available for this hero"
         } else {
         descriptionLabel.text = getDescription
         }

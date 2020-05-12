@@ -18,7 +18,7 @@ class EJMSearchViewController:  UIViewController {
     var currentPage = 0
     var page = 0
     
-    
+
     var marvelArray = [DataCharacter]()
     var searchCharacter = [DataCharacter]()
     var searching = false
@@ -43,7 +43,6 @@ class EJMSearchViewController:  UIViewController {
             self.initActivityIndicator()
         }
     }
-    
     
     private func loadData(){
         
@@ -136,7 +135,6 @@ extension EJMSearchViewController :  UITableViewDelegate, UITableViewDataSource 
             
             self.tableView.tableFooterView = spinner
             self.tableView.tableFooterView?.isHidden = false
-            
             
         }
     }

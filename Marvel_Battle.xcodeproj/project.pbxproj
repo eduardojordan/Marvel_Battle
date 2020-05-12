@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04375AFB246AB51F00E564E6 /* EJMArenaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04375AFA246AB51F00E564E6 /* EJMArenaViewController.swift */; };
+		04375AFD246AB53000E564E6 /* EJMRankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04375AFC246AB53000E564E6 /* EJMRankingViewController.swift */; };
+		04375B00246ABA7800E564E6 /* HeroLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = 04375AFE246ABA7800E564E6 /* HeroLeft.png */; };
+		04375B01246ABA7800E564E6 /* HeroRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 04375AFF246ABA7800E564E6 /* HeroRight.png */; };
 		0459FA732469629700A2B482 /* RequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0459FA722469629700A2B482 /* RequestData.swift */; };
 		0459FA78246963F400A2B482 /* ServerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0459FA77246963F400A2B482 /* ServerError.swift */; };
 		0459FA7A2469A17300A2B482 /* imgNotAvailable.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0459FA792469A17300A2B482 /* imgNotAvailable.jpg */; };
@@ -49,6 +53,10 @@
 
 /* Begin PBXFileReference section */
 		0096A58DA55E79AE4C558180 /* Pods-Marvel_Battle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel_Battle.debug.xcconfig"; path = "Target Support Files/Pods-Marvel_Battle/Pods-Marvel_Battle.debug.xcconfig"; sourceTree = "<group>"; };
+		04375AFA246AB51F00E564E6 /* EJMArenaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EJMArenaViewController.swift; sourceTree = "<group>"; };
+		04375AFC246AB53000E564E6 /* EJMRankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EJMRankingViewController.swift; sourceTree = "<group>"; };
+		04375AFE246ABA7800E564E6 /* HeroLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HeroLeft.png; sourceTree = "<group>"; };
+		04375AFF246ABA7800E564E6 /* HeroRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HeroRight.png; sourceTree = "<group>"; };
 		0459FA722469629700A2B482 /* RequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestData.swift; sourceTree = "<group>"; };
 		0459FA77246963F400A2B482 /* ServerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerError.swift; sourceTree = "<group>"; };
 		0459FA792469A17300A2B482 /* imgNotAvailable.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = imgNotAvailable.jpg; sourceTree = "<group>"; };
@@ -179,6 +187,8 @@
 			children = (
 				046CCD6D2466CAB50089C1FF /* EJMSearchViewController.swift */,
 				0459FA7B2469A77400A2B482 /* EJMDetailViewController.swift */,
+				04375AFA246AB51F00E564E6 /* EJMArenaViewController.swift */,
+				04375AFC246AB53000E564E6 /* EJMRankingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -205,6 +215,8 @@
 		046CCD652466BBE60089C1FF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				04375AFE246ABA7800E564E6 /* HeroLeft.png */,
+				04375AFF246ABA7800E564E6 /* HeroRight.png */,
 				0459FA792469A17300A2B482 /* imgNotAvailable.jpg */,
 				046CCD6B2466C63B0089C1FF /* MarvelBattle_Logo.png */,
 				046CCD712466D37F0089C1FF /* MarvelBattleHorizontalLogo.png */,
@@ -371,9 +383,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04375B00246ABA7800E564E6 /* HeroLeft.png in Resources */,
 				046CCD3E2466B8EC0089C1FF /* LaunchScreen.storyboard in Resources */,
 				046CCD3B2466B8EC0089C1FF /* Assets.xcassets in Resources */,
 				046CCD362466B8E90089C1FF /* Main.storyboard in Resources */,
+				04375B01246ABA7800E564E6 /* HeroRight.png in Resources */,
 				0459FA7A2469A17300A2B482 /* imgNotAvailable.jpg in Resources */,
 				046CCD6C2466C63B0089C1FF /* MarvelBattle_Logo.png in Resources */,
 				046CCD722466D37F0089C1FF /* MarvelBattleHorizontalLogo.png in Resources */,
@@ -514,6 +528,8 @@
 				046CCD392466B8E90089C1FF /* Marvel_Battle.xcdatamodeld in Sources */,
 				046CCD2F2466B8E90089C1FF /* AppDelegate.swift in Sources */,
 				0459FA732469629700A2B482 /* RequestData.swift in Sources */,
+				04375AFD246AB53000E564E6 /* EJMRankingViewController.swift in Sources */,
+				04375AFB246AB51F00E564E6 /* EJMArenaViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
