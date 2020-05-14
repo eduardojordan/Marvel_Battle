@@ -18,5 +18,7 @@ extension CharacterEntity {
 
     @NSManaged public var combatWinner: Int64
     @NSManaged public var nameChracter: String?
+    @NSManaged public var descriptionCharacter: String?
+    @NSManaged public var imageCharacter: String?
 
 }

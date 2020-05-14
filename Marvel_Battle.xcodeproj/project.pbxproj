@@ -162,9 +162,9 @@
 				0459FA742469635300A2B482 /* Request */,
 				046CCD632466BBA00089C1FF /* Views */,
 				046CCD622466BB9B0089C1FF /* Controllers */,
-				046CCD652466BBE60089C1FF /* Resources */,
 				04B8812624676112008B5CBE /* Utils */,
 				046CCD682466C3F40089C1FF /* Extensions */,
+				046CCD652466BBE60089C1FF /* Resources */,
 				04BB74702468168A00654830 /* Supporting */,
 			);
 			path = Marvel_Battle;

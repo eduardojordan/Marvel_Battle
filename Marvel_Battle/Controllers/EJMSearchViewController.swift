@@ -50,6 +50,7 @@ class EJMSearchViewController:  UIViewController {
         if self.marvelArray.count == 0{
             self.initActivityIndicator()
         }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,7 +65,7 @@ class EJMSearchViewController:  UIViewController {
     private func loadData(){
         
         let offset = page * ApiURL.limit
-        var queryParams: [String:String] = ["offset": String(offset), "limit": String(ApiURL.limit)]
+        let queryParams: [String:String] = ["offset": String(offset), "limit": String(ApiURL.limit)]
         let jsonUrlString = ApiURL.basePath + queryParams.queryString! + ApiURL.getCredentials()
         
         requestCharacter.networkRequest(MethodType: Type.GET, url: jsonUrlString, codableType: Characters.self) { (response) in
@@ -132,8 +133,7 @@ extension EJMSearchViewController :  UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if  presentingViewController != nil{
-            print("PRESENT CONTROLLER")
-            
+
             let controller = self.storyboard!.instantiateViewController(withIdentifier: "EJMArenaViewController") as! EJMArenaViewController
             let dataArray = self.marvelArray[indexPath.row]
             delegate?.addItemViewController(self, didFinishEnteringItem: dataArray)
@@ -144,7 +144,7 @@ extension EJMSearchViewController :  UITableViewDelegate, UITableViewDataSource 
         }
         
         if  presentingViewController == nil{
-            print("PRESENT NAVEGATION")
+
             let controller = self.storyboard!.instantiateViewController(withIdentifier: "EJMDetailViewController") as! EJMDetailViewController
             controller.getName = self.marvelArray[indexPath.row].name!
             controller.getDescription = self.marvelArray[indexPath.row].description!
