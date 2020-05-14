@@ -63,7 +63,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Search" id="beR-Dt-9Ax"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="Search.png" id="beR-Dt-9Ax">
+                        <inset key="imageInsets" minX="10" minY="20" maxX="10" maxY="20"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="0hQ-hR-nPw"/>
                     <connections>
                         <outlet property="searchBar" destination="n6W-py-p70" id="lW4-8J-WZb"/>
@@ -273,7 +275,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="o5z-bq-gzt"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Arena" id="wTH-lN-s0w"/>
+                    <tabBarItem key="tabBarItem" title="Arena" image="Combat.png" id="wTH-lN-s0w">
+                        <inset key="imageInsets" minX="3" minY="20" maxX="3" maxY="20"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="combatBButton" destination="6CE-Kv-ASX" id="XAC-p6-dHw"/>
                         <outlet property="imageHero1" destination="6Es-4F-pXp" id="xOP-G9-gEm"/>
@@ -316,7 +320,9 @@
                             <outlet property="delegate" destination="bAw-it-gBb" id="OC1-dq-zKi"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Ranking" id="IpA-tI-nWg"/>
+                    <tabBarItem key="tabBarItem" title="Ranking" image="Ranking.png" id="IpA-tI-nWg">
+                        <inset key="imageInsets" minX="3" minY="20" maxX="3" maxY="20"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ma3-2y-DNy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -353,7 +359,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <color key="tintColor" red="0.98812188850000005" green="1" blue="0.99588774739999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <color key="selectedImageTintColor" red="0.98812188850000005" green="1" blue="0.99588774739999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="TKO-hg-3RN"/>
@@ -367,7 +375,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Combat.png" width="48" height="48"/>
         <image name="HeroLeft.png" width="679" height="1484"/>
         <image name="HeroRight.png" width="679" height="1484"/>
+        <image name="Ranking.png" width="48" height="48"/>
+        <image name="Search.png" width="48" height="48"/>
     </resources>
 </document>

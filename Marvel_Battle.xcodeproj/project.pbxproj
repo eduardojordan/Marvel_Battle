@@ -29,6 +29,9 @@
 		046CCD722466D37F0089C1FF /* MarvelBattleHorizontalLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 046CCD712466D37F0089C1FF /* MarvelBattleHorizontalLogo.png */; };
 		046CCD862466EDC10089C1FF /* Characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046CCD852466EDC10089C1FF /* Characters.swift */; };
 		04B881282467613F008B5CBE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B881272467613F008B5CBE /* Constants.swift */; };
+		04DED767246D630100B5875C /* Ranking.png in Resources */ = {isa = PBXBuildFile; fileRef = 04DED764246D630000B5875C /* Ranking.png */; };
+		04DED768246D630100B5875C /* Search.png in Resources */ = {isa = PBXBuildFile; fileRef = 04DED765246D630000B5875C /* Search.png */; };
+		04DED769246D630100B5875C /* Combat.png in Resources */ = {isa = PBXBuildFile; fileRef = 04DED766246D630100B5875C /* Combat.png */; };
 		5F65C2FE33508B9065C607E8 /* Pods_Marvel_Battle_Marvel_BattleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAA2C1A9E4D6FBACB1886A2C /* Pods_Marvel_Battle_Marvel_BattleUITests.framework */; };
 		73D3B66FC72591F2136CF0E9 /* Pods_Marvel_BattleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEFC25FAB8B8878D6280385D /* Pods_Marvel_BattleTests.framework */; };
 		F5BA65EF360FCC70474B0A63 /* Pods_Marvel_Battle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2243B7873877392315580675 /* Pods_Marvel_Battle.framework */; };
@@ -81,6 +84,9 @@
 		046CCD712466D37F0089C1FF /* MarvelBattleHorizontalLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MarvelBattleHorizontalLogo.png; sourceTree = "<group>"; };
 		046CCD852466EDC10089C1FF /* Characters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Characters.swift; sourceTree = "<group>"; };
 		04B881272467613F008B5CBE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		04DED764246D630000B5875C /* Ranking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ranking.png; sourceTree = "<group>"; };
+		04DED765246D630000B5875C /* Search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Search.png; sourceTree = "<group>"; };
+		04DED766246D630100B5875C /* Combat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Combat.png; sourceTree = "<group>"; };
 		1B0B453CA812A8DA562E4720 /* Pods-Marvel_Battle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel_Battle.release.xcconfig"; path = "Target Support Files/Pods-Marvel_Battle/Pods-Marvel_Battle.release.xcconfig"; sourceTree = "<group>"; };
 		1C6B1FCD6F5768C028268395 /* Pods-Marvel_BattleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel_BattleTests.release.xcconfig"; path = "Target Support Files/Pods-Marvel_BattleTests/Pods-Marvel_BattleTests.release.xcconfig"; sourceTree = "<group>"; };
 		2243B7873877392315580675 /* Pods_Marvel_Battle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marvel_Battle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -215,6 +221,9 @@
 		046CCD652466BBE60089C1FF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				04DED766246D630100B5875C /* Combat.png */,
+				04DED764246D630000B5875C /* Ranking.png */,
+				04DED765246D630000B5875C /* Search.png */,
 				04375AFE246ABA7800E564E6 /* HeroLeft.png */,
 				04375AFF246ABA7800E564E6 /* HeroRight.png */,
 				0459FA792469A17300A2B482 /* imgNotAvailable.jpg */,
@@ -386,11 +395,14 @@
 				04375B00246ABA7800E564E6 /* HeroLeft.png in Resources */,
 				046CCD3E2466B8EC0089C1FF /* LaunchScreen.storyboard in Resources */,
 				046CCD3B2466B8EC0089C1FF /* Assets.xcassets in Resources */,
+				04DED768246D630100B5875C /* Search.png in Resources */,
+				04DED769246D630100B5875C /* Combat.png in Resources */,
 				046CCD362466B8E90089C1FF /* Main.storyboard in Resources */,
 				04375B01246ABA7800E564E6 /* HeroRight.png in Resources */,
 				0459FA7A2469A17300A2B482 /* imgNotAvailable.jpg in Resources */,
 				046CCD6C2466C63B0089C1FF /* MarvelBattle_Logo.png in Resources */,
 				046CCD722466D37F0089C1FF /* MarvelBattleHorizontalLogo.png in Resources */,
+				04DED767246D630100B5875C /* Ranking.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
