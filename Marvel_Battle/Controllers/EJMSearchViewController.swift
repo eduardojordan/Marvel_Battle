@@ -9,6 +9,16 @@
 import UIKit
 
 
+protocol EJMSearchViewControllerDelegate: NSObjectProtocol {
+    
+    func addItemViewController(_ controller: EJMSearchViewController?, didFinishEnteringItem item: DataCharacter?)
+}
+
+protocol EJMSearchViewControllerDelegate2: NSObjectProtocol {
+    
+    func addItemViewController2(_ controller: EJMSearchViewController?, didFinishEnteringItem item: DataCharacter?)
+}
+
 class EJMSearchViewController:  UIViewController {
     
     @IBOutlet var searchBar: UISearchBar!
@@ -18,11 +28,13 @@ class EJMSearchViewController:  UIViewController {
     var currentPage = 0
     var page = 0
     
-
     var marvelArray = [DataCharacter]()
     var searchCharacter = [DataCharacter]()
     var searching = false
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    
+    var delegate: EJMSearchViewControllerDelegate?
+    var delegate2: EJMSearchViewControllerDelegate2?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +48,7 @@ class EJMSearchViewController:  UIViewController {
         searchBar.searchTextField.textColor = .white
         searchBar.placeholder = "Search hero"
         searchBar.searchTextField.font = UIFont(name: "Helvetica", size: 14)
+    
         
         tableView.backgroundColor = UIColor.darkGray
         tableView.rowHeight = 100
@@ -47,11 +60,8 @@ class EJMSearchViewController:  UIViewController {
     private func loadData(){
         
         let offset = page * ApiURL.limit
-        print("offset------>",offset)
         var queryParams: [String:String] = ["offset": String(offset), "limit": String(ApiURL.limit)]
-        
         let jsonUrlString = ApiURL.basePath + queryParams.queryString! + ApiURL.getCredentials()
-        print("jsonUrlString",jsonUrlString)
         
         requestCharacter.networkRequest(MethodType: Type.GET, url: jsonUrlString, codableType: Characters.self) { (response) in
             self.marvelArray.append(contentsOf: response.data!.results)
@@ -74,6 +84,7 @@ class EJMSearchViewController:  UIViewController {
         
         activityIndicator.startAnimating()
     }
+    var valueToPass:String!
 }
 
 extension EJMSearchViewController :  UITableViewDelegate, UITableViewDataSource {
@@ -103,6 +114,7 @@ extension EJMSearchViewController :  UITableViewDelegate, UITableViewDataSource 
         }else{
             cell.imageView?.image = UIImage(url: url)
         }
+        
         if searching {
             cell.textLabel?.text = self.searchCharacter[indexPath.row].name
             return cell
@@ -112,21 +124,38 @@ extension EJMSearchViewController :  UITableViewDelegate, UITableViewDataSource 
         }
     }
     
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let controller = self.storyboard!.instantiateViewController(withIdentifier: "EJMDetailViewController") as! EJMDetailViewController
-        controller.getName = self.marvelArray[indexPath.row].name!
-        controller.getDescription = self.marvelArray[indexPath.row].description!
-        controller.getImage = self.marvelArray[indexPath.row].image!
-        self.navigationController!.pushViewController(controller, animated: true)
+        if  presentingViewController != nil{
+            print("PRESENT CONTROLLER")
+            
+            let controller = self.storyboard!.instantiateViewController(withIdentifier: "EJMArenaViewController") as! EJMArenaViewController
+            let dataArray = self.marvelArray[indexPath.row]
+            delegate?.addItemViewController(self, didFinishEnteringItem: dataArray)
+            delegate2?.addItemViewController2(self, didFinishEnteringItem: dataArray)
+            
+           self.dismiss(animated: false, completion: nil)
+            
+        }
+        
+        if  presentingViewController == nil{
+            print("PRESENT NAVEGATION")
+            let controller = self.storyboard!.instantiateViewController(withIdentifier: "EJMDetailViewController") as! EJMDetailViewController
+            controller.getName = self.marvelArray[indexPath.row].name!
+            controller.getDescription = self.marvelArray[indexPath.row].description!
+            controller.getImage = self.marvelArray[indexPath.row].image!
+            self.navigationController!.pushViewController(controller, animated: true)
+            
+        }
         
     }
     
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == self.marvelArray.count - 1{
-            print("Cargar + Datos")
+       
             page =  page + 1
-            
             loadData()
             let spinner = UIActivityIndicatorView(style: .gray)
             spinner.startAnimating()
@@ -145,10 +174,17 @@ extension EJMSearchViewController: UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        self.searchCharacter = self.marvelArray.filter({$0.name!.prefix(searchText.count) == searchText})
+   self.searchCharacter = self.marvelArray.filter({$0.name!.prefix(searchText.count) == searchText})
+
+
         searching = true
+//        self.marvelArray.removeAll()
+//        self.marvelArray = self.searchCharacter
         tableView.reloadData()
+
+    
     }
+
 }
 
 extension UIImage {

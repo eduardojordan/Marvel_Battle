@@ -23,6 +23,7 @@ struct DataCharacter: Decodable {
     var name: String?
     var description: String?
     var image: URL?
+    var totalComics: Int
     
     enum CodingKeys: String, CodingKey {
         
@@ -31,6 +32,8 @@ struct DataCharacter: Decodable {
         case description
         case thumbnail
         case image = "path"
+        case comics
+        case totalComics = "available"
         
     }
     
@@ -43,6 +46,9 @@ struct DataCharacter: Decodable {
         description = try container.decode(String.self, forKey: .description)
         let containerImage = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .thumbnail)
         image = try containerImage.decode(URL.self, forKey: .image)
+        
+        let containerComics = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .comics)
+        totalComics = try containerComics.decode(Int.self, forKey: .totalComics)
     }
     
 }

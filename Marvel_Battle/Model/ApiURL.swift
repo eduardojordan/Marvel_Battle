@@ -22,7 +22,6 @@ class ApiURL{
         let ts = Date().timeIntervalSince1970.description
         let hash = "\(ts)\(privateKey)\(publicKey)".md5()
         let authParams = ["ts": ts, "apikey": publicKey, "hash": hash]
-        print(authParams)
         return authParams.queryString!
     }
     

@@ -32,10 +32,6 @@ class EJMDetailViewController: UIViewController {
         let pathString = "http://i.annihil.us" + imgData!.path + "/portrait_xlarge.jpg"
         let url = URL(string: pathString)
         imageDetail.image = UIImage(url: url)
-        
-     
-   
-        
 
     }
     
