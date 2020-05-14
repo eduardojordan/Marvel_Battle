@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:CharacterEntity+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:CharacterEntity+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:Marvel_Battle.xcodeproj">
    </FileRef>
    <FileRef

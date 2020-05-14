@@ -11,7 +11,6 @@ import CoreData
 
 class EJMArenaViewController: UIViewController , EJMSearchViewControllerDelegate, EJMSearchViewControllerDelegate2{
     
-    
     @IBOutlet var nameHero1Label: UILabel!
     @IBOutlet var imageHero1: UIImageView!
     @IBOutlet var nameHero2Label: UILabel!
@@ -27,6 +26,9 @@ class EJMArenaViewController: UIViewController , EJMSearchViewControllerDelegate
     var getName2 = ""
     var getImage2 = URL(string: "")
     var getComics2 = 0
+    
+    var winner = ""
+    var combatWinnerCounter = +1
     
     func addItemViewController(_ controller: EJMSearchViewController?, didFinishEnteringItem item: DataCharacter?) {
         self.getName1 = (item?.name)!
@@ -44,19 +46,19 @@ class EJMArenaViewController: UIViewController , EJMSearchViewControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-      //  self.navigationController?.navigationBar.topItem?.title = "title"
-
+        
+        //  self.navigationController?.navigationBar.topItem?.title = "title"
         
         
         
-//        let logo = UIImage(named: "MarvelBattleHorizontalLogo.png")
-//             let imageView = UIImageView(image:logo)
-//             imageView.contentMode = UIView.ContentMode.scaleAspectFit
-//             self.navigationItem.titleView = imageView
+        
+        //        let logo = UIImage(named: "MarvelBattleHorizontalLogo.png")
+        //             let imageView = UIImageView(image:logo)
+        //             imageView.contentMode = UIView.ContentMode.scaleAspectFit
+        //             self.navigationItem.titleView = imageView
         
         //super.tabBarController?.title = "Arena"
-            //   super.tabBarController?.
+        //   super.tabBarController?.
         
         selectHero1.addTarget(self, action:#selector(actionSelectHero1), for: .touchUpInside)
         selectHero2.addTarget(self, action:#selector(actionSelectHero2), for: .touchUpInside)
@@ -106,7 +108,6 @@ class EJMArenaViewController: UIViewController , EJMSearchViewControllerDelegate
         isFighterIsSame()
         FightersIsOnlyOne()
         FighterReady()
-        coredataSave()
         
     }
     
@@ -143,15 +144,17 @@ class EJMArenaViewController: UIViewController , EJMSearchViewControllerDelegate
     
     func FighterReady(){
         // WIN BIGGER COMICS SHOW
-        var win = max(self.getComics1, self.getComics2)
-        print("COMBAT \(self.getName1,self.getComics1) vs \(self.getName2,self.getComics2)")
-        var winner = ""
-        var combatWinnerCounter = +1
+        let win = max(self.getComics1, self.getComics2)
+        print("COMBAT \((self.getName1,self.getComics1)) vs \((self.getName2,self.getComics2))")
+        
         if win == self.getComics1 {
-            winner = self.getName1
+            self.winner = self.getName1
         } else {
-            winner = self.getName2
+            self.winner = self.getName2
         }
+        
+        persistenceCoredata()
+        
         let alert = UIAlertController(title: "The Winners is...", message: " 👉 \(winner) 👈", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Ranking show", style: UIAlertAction.Style.destructive, handler: { action in
             
@@ -164,28 +167,83 @@ class EJMArenaViewController: UIViewController , EJMSearchViewControllerDelegate
         self.present(alert, animated: true, completion: nil)
     }
     
-    func coredataSave(){
-        // COREDATA SAVE
-        //        print("COREDATA SAVE!!")
-        //           guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-        //           let managedContex = appDelegate.persistentContainer.viewContext
-        //           let userEntity = NSEntityDescription.entity(forEntityName: "CharacterEntity", in: managedContex)!
-        //
-        //           let product = NSManagedObject(entity: userEntity, insertInto: managedContex)
-        //        // SALVAR EL GANADOR NAME AND SUMAR UNA VEZ DE GANADA
-        //        print("PARA COREDATA COMBATWINNER NAME ", winner)
-        //        print("PARA COREDATA COMBATWINNER COUNTER", combatWinnerCounter)
-        //          product.setValue(combatWinnerCounter, forKey: "combatWinner")
-        //           product.setValue(winner, forKey: "nameChracter")
-        //
-        //           do{
-        //               try managedContex.save()
-        //           }catch let error as NSError{
-        //               print("Could not save \(error)")
-        //           }
+    func persistenceCoredata(){
+        if checkIfItemExistInCoredata(winner: self.winner) == false {
+            print("NO ESTA GRABADO EN COREDATA Y SE SALVA")
+            saveIncoredata(winner: self.winner, combatWinnerCounter: self.combatWinnerCounter)
+        } else {
+            print("ESTA GRABADO EN COREDATA Y SE ACTUALIZA")
+            updateCoredata(winner: self.winner, combatWinnerCounter: self.combatWinnerCounter)
+        }
+    }
+    
+    
+    func checkIfItemExistInCoredata(winner: String) -> Bool {
+        
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let managedContex = appDelegate!.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "CharacterEntity")
+        fetchRequest.fetchLimit = 1
+        fetchRequest.predicate = NSPredicate(format: "nameChracter == %@" , self.winner)
+        do {
+            let count = try managedContex.count(for: fetchRequest)
+            if count > 0 {
+                return true
+            }else {
+                return false
+            }
+        }catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+            return false
+        }
+    }
+}
+
+func saveIncoredata(winner: String, combatWinnerCounter: Int){
+    
+    print("COREDATA SAVE!!")
+    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+    let managedContex = appDelegate.persistentContainer.viewContext
+    let userEntity = NSEntityDescription.entity(forEntityName: "CharacterEntity", in: managedContex)!
+    let character = NSManagedObject(entity: userEntity, insertInto: managedContex)
+    
+    character.setValue( combatWinnerCounter, forKey: "combatWinner")
+    character.setValue( winner, forKey: "nameChracter")
+    
+    do{
+        try managedContex.save()
+    }catch let error as NSError{
+        print("Could not save \(error)")
     }
     
 }
+
+func updateCoredata(winner: String, combatWinnerCounter: Int){
+    
+//    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+//    let managedContex = appDelegate.persistentContainer.viewContext
+//    let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "CharacterEntity")
+//    //
+//    fetchRequest.predicate = NSPredicate(format: "combatWinner = %@" , winner)
+//   // fetchRequest.predicate = NSPredicate(format: "combatWinnerCounter = %d", combatWinnerCounter)
+//    //
+//    do {
+//        let test = try managedContex.fetch(fetchRequest)
+//        let objectUpdate = winner as! NSManagedObject
+//       
+//        objectUpdate.setValue( combatWinnerCounter, forKey: "combatWinnerCounter")
+//        //            objectUpdate.setValue( self.price, forKey: "product_price")
+//        //            print("objectUpdate2 ->",objectUpdate)
+//        do{
+//            try managedContex.save()
+//            //               // self.tableViewOrder.reloadData()
+//        }
+//    } catch{
+//        print(error)
+//    }
+    
+}
+
 
 extension UIImage {
     func toString() -> String? {
