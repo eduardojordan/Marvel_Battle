@@ -9,14 +9,14 @@
 import UIKit
 
 
-protocol EJMSearchViewControllerDelegate: NSObjectProtocol {
+protocol EJMSearchViewControllerDelegate : NSObjectProtocol{
     
-    func addItemViewController(_ controller: EJMSearchViewController?, didFinishEnteringItem item: DataCharacter?)
+    func addItemViewController( item: DataCharacter?)
 }
 
-protocol EJMSearchViewControllerDelegate2: NSObjectProtocol {
+protocol EJMSearchViewControllerDelegate2 : NSObjectProtocol{
     
-    func addItemViewController2(_ controller: EJMSearchViewController?, didFinishEnteringItem item: DataCharacter?)
+    func addItemViewController2(item: DataCharacter?)
 }
 
 class EJMSearchViewController:  UIViewController {
@@ -33,8 +33,8 @@ class EJMSearchViewController:  UIViewController {
     var searching = false
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
-    var delegate: EJMSearchViewControllerDelegate?
-    var delegate2: EJMSearchViewControllerDelegate2?
+   weak var delegate: EJMSearchViewControllerDelegate?
+    weak var delegate2: EJMSearchViewControllerDelegate2?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +52,7 @@ class EJMSearchViewController:  UIViewController {
         }
         
     }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -134,15 +135,15 @@ extension EJMSearchViewController :  UITableViewDelegate, UITableViewDataSource 
         
         if  presentingViewController != nil{
 
-            let controller = self.storyboard!.instantiateViewController(withIdentifier: "EJMArenaViewController") as! EJMArenaViewController
             let dataArray = self.marvelArray[indexPath.row]
-            delegate?.addItemViewController(self, didFinishEnteringItem: dataArray)
-            delegate2?.addItemViewController2(self, didFinishEnteringItem: dataArray)
             
-            self.dismiss(animated: false, completion: nil)
+            delegate?.addItemViewController(item: dataArray)
+            delegate2?.addItemViewController2(item: dataArray)
+            
+            self.dismiss(animated: true, completion: nil)
             
         }
-        
+
         if  presentingViewController == nil{
 
             let controller = self.storyboard!.instantiateViewController(withIdentifier: "EJMDetailViewController") as! EJMDetailViewController

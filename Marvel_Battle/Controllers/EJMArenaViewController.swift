@@ -11,6 +11,8 @@ import CoreData
 
 class EJMArenaViewController: UIViewController , EJMSearchViewControllerDelegate, EJMSearchViewControllerDelegate2{
     
+    
+    
     @IBOutlet var nameHero1Label: UILabel!
     @IBOutlet var imageHero1: UIImageView!
     @IBOutlet var nameHero2Label: UILabel!
@@ -19,51 +21,72 @@ class EJMArenaViewController: UIViewController , EJMSearchViewControllerDelegate
     @IBOutlet var selectHero2: UIButton!
     @IBOutlet var combatBButton: UIButton!
     
-    var getName1 = ""
-    var getImage1 = URL(string: "")
+    var getName1 = "" {
+        didSet {
+            nameHero1Label.text = self.getName1
+        }
+    }
+    var getImage1 = URL(string: "") {
+        didSet {
+            let pathString = "http://i.annihil.us" + getImage1!.path + "/portrait_xlarge.jpg"
+            let url = URL(string: pathString)
+            imageHero1.image = UIImage(url: url)
+        }
+    }
+    
     var getDescription1 = ""
     var getComics1 = 0
     
-    var getName2 = ""
-    var getImage2 = URL(string: "")
+    var getName2 = "" {
+        didSet{
+            nameHero2Label.text = self.getName2
+        }
+    }
+    var getImage2 = URL(string: ""){
+        didSet{
+            let pathString = "http://i.annihil.us" + getImage2!.path + "/portrait_xlarge.jpg"
+            let url = URL(string: pathString)
+            imageHero2.image = UIImage(url: url)
+        }
+    }
     var getDescription2 = ""
     var getComics2 = 0
-    
     var winner = ""
     var combatWinnerCounter = +1
+        
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        selectHero1.addTarget(self, action:#selector(actionSelectHero1), for: .touchUpInside)
+        selectHero2.addTarget(self, action:#selector(actionSelectHero2), for: .touchUpInside)
+        combatBButton.addTarget(self, action:#selector(actionCombat), for: .touchUpInside)
+        
+
+    }
     
-    func addItemViewController(_ controller: EJMSearchViewController?, didFinishEnteringItem item: DataCharacter?) {
+    func addItemViewController(item: DataCharacter?) {
         self.getName1 = (item?.name)!
         self.getImage1 = item?.image
         self.getDescription1 = (item?.description)!
         self.getComics1 = item!.totalComics
+        print("ELNOMBRE ES--->",getName1)
     }
     
-    func addItemViewController2(_ controller: EJMSearchViewController?, didFinishEnteringItem item: DataCharacter?) {
+    func addItemViewController2(item: DataCharacter?) {
         self.getName2 = (item?.name)!
         self.getImage2 = item?.image
         self.getDescription2 = (item?.description)!
         self.getComics2 = item!.totalComics
-   
+        
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-            
-        selectHero1.addTarget(self, action:#selector(actionSelectHero1), for: .touchUpInside)
-        selectHero2.addTarget(self, action:#selector(actionSelectHero2), for: .touchUpInside)
-        combatBButton.addTarget(self, action:#selector(actionCombat), for: .touchUpInside)
-    }
-
     
     @objc func actionSelectHero1(){
         let controller = storyboard!.instantiateViewController(withIdentifier: "EJMSearchViewController") as! EJMSearchViewController
-       controller.delegate = self
-       self.present(controller, animated: true, completion: nil)
-            
-        nameHero1Label.text = self.getName1
-
+        controller.delegate = self
+        
         if getImage1 != nil {
+            nameHero1Label.text = self.getName1
             let pathString = "http://i.annihil.us" + getImage1!.path + "/portrait_xlarge.jpg"
             let url = URL(string: pathString)
             if  url == nil {
@@ -72,18 +95,18 @@ class EJMArenaViewController: UIViewController , EJMSearchViewControllerDelegate
                 imageHero1.image = UIImage(url: url)
             }
         }
-  
+        
+        self.present(controller, animated: true, completion: nil)
+        
     }
     
     
     @objc func actionSelectHero2(){
         let controller = storyboard!.instantiateViewController(withIdentifier: "EJMSearchViewController") as! EJMSearchViewController
         controller.delegate2 = self
-        self.present(controller, animated: true, completion: nil)
         
-        nameHero2Label.text = self.getName2
-
         if getImage2 != nil {
+            nameHero2Label.text = self.getName2
             let pathString = "http://i.annihil.us" + getImage2!.path + "/portrait_xlarge.jpg"
             let url = URL(string: pathString)
             if  url == nil {
@@ -92,6 +115,7 @@ class EJMArenaViewController: UIViewController , EJMSearchViewControllerDelegate
                 imageHero2.image = UIImage(url: url)
             }
         }
+        self.present(controller, animated: true, completion: nil)
     }
     
     @objc func actionCombat(){
@@ -105,7 +129,7 @@ class EJMArenaViewController: UIViewController , EJMSearchViewControllerDelegate
     
     func isFighterIsNil(){
         if (self.getName1 == "" && self.getName2 == "") {
-  
+            
             let alert = UIAlertController(title: "Attention", message: "You must select 2 marvel heroes", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
@@ -131,9 +155,9 @@ class EJMArenaViewController: UIViewController , EJMSearchViewControllerDelegate
     var winnerDescription = ""
     var winnerImage = URL(string: "")
     func FighterReady(){
-    
+        
         let win = max(self.getComics1, self.getComics2)
-
+        
         if win == self.getComics1 {
             self.winner = self.getName1
             self.winnerDescription = self.getDescription1
@@ -160,11 +184,10 @@ class EJMArenaViewController: UIViewController , EJMSearchViewControllerDelegate
     
     func persistenceCoredata(){
         if checkIfItemExistInCoredata(winner: self.winner) == false {
-             let convertURLtoString = String(describing: winnerImage)
+            let convertURLtoString = String(describing: winnerImage)
             saveIncoredata(name: winner, description: winnerDescription, urlString: convertURLtoString )
         }
     }
-    
     
     func checkIfItemExistInCoredata(winner: String) -> Bool {
         
@@ -189,7 +212,7 @@ class EJMArenaViewController: UIViewController , EJMSearchViewControllerDelegate
 
 
 func saveIncoredata(name:String, description:String , urlString: String){
-
+    
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
     let managedContex = appDelegate.persistentContainer.viewContext
     let userEntity = NSEntityDescription.entity(forEntityName: "CharacterEntity", in: managedContex)!
@@ -198,7 +221,7 @@ func saveIncoredata(name:String, description:String , urlString: String){
     character.setValue( name, forKey: "nameChracter")
     character.setValue(description, forKey: "descriptionCharacter")
     character.setValue(urlString, forKey: "imageCharacter")
-  
+    
     do{
         try managedContex.save()
     }catch let error as NSError{
