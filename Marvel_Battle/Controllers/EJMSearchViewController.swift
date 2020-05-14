@@ -39,22 +39,26 @@ class EJMSearchViewController:  UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let logo = UIImage(named: "MarvelBattleHorizontalLogo.png")
-        let imageView = UIImageView(image:logo)
-        imageView.contentMode = UIView.ContentMode.scaleAspectFit
-        self.navigationItem.titleView = imageView
-        
         loadData()
         searchBar.searchTextField.textColor = .white
         searchBar.placeholder = "Search hero"
         searchBar.searchTextField.font = UIFont(name: "Helvetica", size: 14)
-    
+        
         
         tableView.backgroundColor = UIColor.darkGray
         tableView.rowHeight = 100
         if self.marvelArray.count == 0{
             self.initActivityIndicator()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let logo = UIImage(named: "MarvelBattleHorizontalLogo.png")
+        let imageView = UIImageView(image:logo)
+        imageView.contentMode = UIView.ContentMode.scaleAspectFit
+        self.tabBarController?.navigationItem.titleView = imageView
     }
     
     private func loadData(){
@@ -135,7 +139,7 @@ extension EJMSearchViewController :  UITableViewDelegate, UITableViewDataSource 
             delegate?.addItemViewController(self, didFinishEnteringItem: dataArray)
             delegate2?.addItemViewController2(self, didFinishEnteringItem: dataArray)
             
-           self.dismiss(animated: false, completion: nil)
+            self.dismiss(animated: false, completion: nil)
             
         }
         
@@ -154,7 +158,7 @@ extension EJMSearchViewController :  UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == self.marvelArray.count - 1{
-       
+            
             page =  page + 1
             loadData()
             let spinner = UIActivityIndicatorView(style: .gray)
@@ -174,17 +178,17 @@ extension EJMSearchViewController: UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-   self.searchCharacter = self.marvelArray.filter({$0.name!.prefix(searchText.count) == searchText})
-
-
+        self.searchCharacter = self.marvelArray.filter({$0.name!.prefix(searchText.count) == searchText})
+        
+        
         searching = true
-//        self.marvelArray.removeAll()
-//        self.marvelArray = self.searchCharacter
+        //        self.marvelArray.removeAll()
+        //        self.marvelArray = self.searchCharacter
         tableView.reloadData()
-
-    
+        
+        
     }
-
+    
 }
 
 extension UIImage {

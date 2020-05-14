@@ -44,6 +44,19 @@ class EJMArenaViewController: UIViewController , EJMSearchViewControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+      //  self.navigationController?.navigationBar.topItem?.title = "title"
+
+        
+        
+        
+//        let logo = UIImage(named: "MarvelBattleHorizontalLogo.png")
+//             let imageView = UIImageView(image:logo)
+//             imageView.contentMode = UIView.ContentMode.scaleAspectFit
+//             self.navigationItem.titleView = imageView
+        
+        //super.tabBarController?.title = "Arena"
+            //   super.tabBarController?.
         
         selectHero1.addTarget(self, action:#selector(actionSelectHero1), for: .touchUpInside)
         selectHero2.addTarget(self, action:#selector(actionSelectHero2), for: .touchUpInside)
