@@ -30,10 +30,11 @@ class EJMSearchViewController:  UIViewController {
     
     var marvelArray = [DataCharacter]()
     var searchCharacter = [DataCharacter]()
+    var originalData = [DataCharacter]()
     var searching = false
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
-   weak var delegate: EJMSearchViewControllerDelegate?
+    weak var delegate: EJMSearchViewControllerDelegate?
     weak var delegate2: EJMSearchViewControllerDelegate2?
     
     override func viewDidLoad() {
@@ -52,7 +53,7 @@ class EJMSearchViewController:  UIViewController {
         }
         
     }
-
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -63,7 +64,7 @@ class EJMSearchViewController:  UIViewController {
         self.tabBarController?.navigationItem.titleView = imageView
     }
     
-    private func loadData(){
+    func loadData(){
         
         let offset = page * ApiURL.limit
         let queryParams: [String:String] = ["offset": String(offset), "limit": String(ApiURL.limit)]
@@ -78,6 +79,7 @@ class EJMSearchViewController:  UIViewController {
         }
         
     }
+    
     
     func initActivityIndicator(){
         activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
@@ -123,6 +125,15 @@ extension EJMSearchViewController :  UITableViewDelegate, UITableViewDataSource 
         
         if searching {
             cell.textLabel?.text = self.searchCharacter[indexPath.row].name
+            
+            let imgData = self.searchCharacter[indexPath.row].image
+            let pathString = "http://i.annihil.us" + imgData!.path + "/portrait_xlarge.jpg"
+            let url = URL(string: pathString)
+            if  url == nil {
+                cell.imageView?.image = UIImage(named: "imgNotAvailable.jpg")
+            }else{
+                cell.imageView?.image = UIImage(url: url)
+            }
             return cell
         } else {
             cell.textLabel?.text = self.marvelArray[indexPath.row].name
@@ -134,18 +145,17 @@ extension EJMSearchViewController :  UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if  presentingViewController != nil{
-
-            let dataArray = self.marvelArray[indexPath.row]
             
+            let dataArray = self.marvelArray[indexPath.row]
             delegate?.addItemViewController(item: dataArray)
             delegate2?.addItemViewController2(item: dataArray)
             
             self.dismiss(animated: true, completion: nil)
             
         }
-
+        
         if  presentingViewController == nil{
-
+            
             let controller = self.storyboard!.instantiateViewController(withIdentifier: "EJMDetailViewController") as! EJMDetailViewController
             controller.getName = self.marvelArray[indexPath.row].name!
             controller.getDescription = self.marvelArray[indexPath.row].description!
@@ -175,21 +185,16 @@ extension EJMSearchViewController :  UITableViewDelegate, UITableViewDataSource 
     
 }
 
+
 extension EJMSearchViewController: UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        self.searchCharacter = self.marvelArray.filter({$0.name!.prefix(searchText.count) == searchText})
-        
-        
-        searching = true
-        //        self.marvelArray.removeAll()
-        //        self.marvelArray = self.searchCharacter
-        tableView.reloadData()
-        
+        self.searchCharacter = self.marvelArray.filter({$0.name!.prefix(searchText.count) == searchText} )
+        self.searching = true
+        self.tableView.reloadData()
         
     }
-    
 }
 
 extension UIImage {
