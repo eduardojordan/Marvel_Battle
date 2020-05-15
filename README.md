@@ -49,6 +49,12 @@ Xcode 11.2.1
 OS X 10.14.6
 Iiphone X and iphone SE Compatible
 
+## Run in Simulator Xcode
+
+In Xcode Select Signing & Capabilities in Target of App
+Adjust Team
+Change Bundle Identifier
+
 
 ## Cocoapods
 
