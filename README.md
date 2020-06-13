@@ -1,6 +1,6 @@
 # Marvel Battle 
 
-It is a practice with the API that Marvel provides for all those of us who are fanboy of Marvel. It was taken from the following URL https://developer.marvel.com. This app shows the marvel characters as well as a brief description, It presents a combat section where the characters can measure their strength based on the appearances in comics
+It is a practice with the API that Marvel provides for all those of us who are fanboy of Marvel. It was taken from the following URL https://developer.marvel.com. This app shows the marvel characters as well as a brief description, It presents a combat section where the characters can measure their strength based on the appearances in comics.
 
 
 ## Image Captures
