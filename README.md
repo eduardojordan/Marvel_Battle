@@ -8,7 +8,6 @@ It is a practice with the API that Marvel provides for all those of us who are f
 ![image](img1.png)
 ![image](img2.png)
 ![image](img3.png)
-![image](img4p.ng)
 ![image](img5.png)
 ![image](img6.png)
 
